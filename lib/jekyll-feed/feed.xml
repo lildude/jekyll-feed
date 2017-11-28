@@ -65,7 +65,11 @@
         <category term="{{ tag | xml_escape }}" />
       {% endfor %}
 
-      {% assign use_excerpts = site.feed.use_excerpts | default: true %}
+      {% if site.feed.use_excerpts == false %}
+      {% assign use_excerpts = site.feed.use_excerpts %}
+      {% else %}
+      {% assign use_excerpts = true %}
+      {% endif %}
       {% if use_excerpts and post.excerpt and post.excerpt != empty %}
         <summary type="html">{{ post.excerpt | strip_html | normalize_whitespace | xml_escape }}</summary>
       {% endif %}

@@ -289,6 +289,20 @@ describe(JekyllFeed) do
     end
   end
 
+  context "changing the display of excerpts" do
+    let(:overrides) do
+      {
+        "feed" => {
+          "use_excerpts" => false
+        }
+      }
+    end
+
+    it "renders the feed without summary fields" do
+      expect(contents).not_to match %r{<summary type="html">}
+    end
+  end
+
   context "feed stylesheet" do
     it "includes the stylesheet" do
       expect(contents).to include('<?xml-stylesheet type="text/xml" href="http://example.org/feed.xslt.xml"?>')
